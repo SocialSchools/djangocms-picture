@@ -36,7 +36,7 @@ class Picture(CMSPlugin):
                      (CENTER, _("center")),
                      )
 
-    image = models.ImageField(_("image"), upload_to=get_plugin_media_path)
+    image = models.ImageField(_("image"), upload_to=get_upload_path)
     url = models.CharField(
         _("link"), max_length=255, blank=True, null=True,
         help_text=_("If present, clicking on image will take user to link."))
