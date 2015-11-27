@@ -1,7 +1,7 @@
 import os
 
 from django.core.exceptions import ValidationError
-from django.db import models
+from django.db import models, connection
 from django.utils.translation import ugettext_lazy as _
 
 from cms.models import CMSPlugin, Page
@@ -21,6 +21,13 @@ class Picture(CMSPlugin):
     """
     A Picture with or without a link.
     """
+    def get_upload_path(instance, filename):
+        """
+        Returns the upload path for the theming media files, which is in a
+        separate folder for clarity.
+        """
+        return "picture/%s/%s/%s" % (instance.image, connection.schema_name, filename)
+
     LEFT = "left"
     RIGHT = "right"
     CENTER = "center"
