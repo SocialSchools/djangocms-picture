@@ -26,7 +26,7 @@ class Picture(CMSPlugin):
         Returns the upload path for the theming media files, which is in a
         separate folder for clarity.
         """
-        return "picture/%s/%s/%s" % (instance.image, connection.schema_name, filename)
+        return "picture/%s/%s" % (connection.schema_name, filename)
 
     LEFT = "left"
     RIGHT = "right"
