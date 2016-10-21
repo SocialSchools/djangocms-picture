@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 import os
 
 from django.core.exceptions import ValidationError
-from django.db import models
+from django.db import models, connection
 from django.utils.translation import ugettext_lazy as _
 
 from cms.models import CMSPlugin, Page
@@ -19,7 +19,20 @@ except ImportError:
         """
         return instance.get_media_path(filename)
 from cms.utils.compat.dj import python_2_unicode_compatible
+from django.utils.deconstruct import deconstructible
 
+
+
+@deconstructible
+class UploadPath(object):
+
+    def __init__(self, sub_path):
+        self.path = sub_path
+
+    def __call__(self, instance, filename):
+        return "pictures/%s/%s" % (connection.schema_name, filename)
+
+get_upload_path = UploadPath('FilePlugin')
 
 @python_2_unicode_compatible
 class Picture(CMSPlugin):
@@ -36,7 +49,7 @@ class Picture(CMSPlugin):
 
     image = models.ImageField(
         _("image"),
-        upload_to=get_plugin_media_path,
+        upload_to=get_upload_path,
     )
     url = models.CharField(
         _("link"),
