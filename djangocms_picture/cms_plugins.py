@@ -19,6 +19,7 @@ from . import models
 class PicturePlugin(CMSPluginBase):
     model = models.Picture
     name = _("Picture")
+    module = "Basis"
     render_template = "djangocms_picture/picture.html"
     text_enabled = True
 
