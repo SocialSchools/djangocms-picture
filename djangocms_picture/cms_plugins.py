@@ -11,6 +11,7 @@ class PicturePlugin(CMSPluginBase):
     model = Picture
     name = _("Picture")
     render_template = "cms/plugins/picture.html"
+    module = "Basis"
     text_enabled = True
 
     def render(self, context, instance, placeholder):
