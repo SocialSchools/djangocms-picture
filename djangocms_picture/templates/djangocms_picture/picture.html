@@ -5,7 +5,8 @@
 {% if picture.image.width < 800 %}
     <img src="{{ picture.image.url }}" alt="{{ picture.alt }}"{% if picture.longdesc %} title="{{ picture.longdesc }}"{% endif %}{% if picture.width %} width="{{ picture.width }}px"{% endif %}{% if picture.height %} height="{{ picture.height }}px"{% endif %} class="img-responsive" />
 {% else %}
+        {% thumbnail picture.image 800x800 as image %}
+        <img src="{{ image.url }}" alt="{{ picture.alt }}"{% if picture.longdesc %} title="{{ picture.longdesc }}"{% endif %} class="img-responsive" />
 {% endif %}
 {% if link %}</a>{% endif %}
 </span>
-
