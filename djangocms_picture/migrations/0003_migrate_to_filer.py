@@ -12,18 +12,20 @@ def migrate_to_filer(apps, schema_editor):
     Picture = apps.get_model('djangocms_picture', 'Picture')
     plugins = Picture.objects.all()
 
-    for plugin in plugins:
-        if plugin.image:
-            picture = Image.objects.get_or_create(
-                file=plugin.image.file,
-                defaults={
-                    'name': plugin.image.name,
-                    'default_alt_text': plugin.alt,
-                    'default_caption': plugin.longdesc
-                }
-            )[0]
-            plugins.filter(pk=plugin.pk).update(picture=picture)
-
+    try:
+        for plugin in plugins:
+            if plugin.image:
+                picture = Image.objects.get_or_create(
+                    file=plugin.image.file,
+                    defaults={
+                        'name': plugin.image.name,
+                        'default_alt_text': plugin.alt,
+                        'default_caption': plugin.longdesc
+                    }
+                )[0]
+                plugins.filter(pk=plugin.pk).update(picture=picture)
+    except Exception as e:
+        print e
 
 class Migration(migrations.Migration):
 
