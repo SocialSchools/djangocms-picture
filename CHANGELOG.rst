@@ -3,7 +3,87 @@ Changelog
 =========
 
 
-2.0.6 (unreleased)
+2.4.0 (2020-01-29)
+==================
+
+* Added support for Django 3.0
+* Pinned ``django-filer`` to 1.5.0
+* Added further tests to raise coverage
+* Fixed smaller issues found during testing
+* Dropped support for django-filer <= 1.4
+* Fixed alt attribute not rendering correctly
+
+
+2.3.0 (2019-07-09)
+==================
+
+* Fixes an issue where ``get_link`` doesn't return external picture
+* Fixes ``img_srcset_data`` being processed on an external picture
+* Added tests for the plugin itself
+* Updated translations
+
+
+2.2.1 (2019-05-06)
+==================
+
+* Fixed a regression where external images are not shown anymore
+
+
+2.2.0 (2019-04-30)
+==================
+
+* Added support for Django 2.2 and django CMS 3.7
+* Removed support for Django 2.0
+* Fixed an issue when the image reference is lost
+* Extended test matrix
+* Added isort and adapted imports
+* Adapted code base to align with other supported addons
+
+
+2.1.3 (2018-12-12)
+==================
+
+* Added missing migration for Picture model
+
+
+2.1.2 (2018-12-06)
+==================
+
+* Fixed an issue creating a validation error on the alt attribute
+* Fixed an issue in the template adding a ``}`` after the ``srcset``
+* Adapted test matrix for django CMS 3.4, 3.5, 3.6 as well as
+  Django 1.11, 2.0 and 2.1
+* Exclude ``tests`` folder from release build
+
+
+2.1.1 (2018-11-14)
+==================
+
+* Added reference variables to migrations
+* Fixed a text typo in models
+
+
+2.1.0 (2018-11-13)
+==================
+
+* Removed support for Django 1.8, 1.9, 1.10
+
+
+2.0.8 (2018-11-13)
+==================
+
+* Fixed an issue where default DJANGOCMS_PICTURE_RESPONSIVE_IMAGES was not in settings
+
+
+2.0.7 (2018-10-19)
+==================
+
+* Add responsive image support
+* Add support for Django 2.0 and 2.1
+* Fix swappable filer image model support
+
+
+2.0.6 (2017-10-12)
 ==================
 
 * Fixed a misleading link to MDN inside code documentation

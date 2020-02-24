@@ -5,8 +5,8 @@ from django.utils.translation import ugettext_lazy as _
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
 
-from .models import Picture
 from .forms import PictureForm
+from .models import Picture
 
 
 # enable nesting of plugins inside the picture plugin
@@ -31,6 +31,7 @@ class PicturePlugin(CMSPluginBase):
             'classes': ('collapse',),
             'fields': (
                 'template',
+                'use_responsive_image',
                 ('width', 'height'),
                 'alignment',
                 'caption_text',
@@ -68,9 +69,10 @@ class PicturePlugin(CMSPluginBase):
         # assign link to a context variable to be performant
         context['picture_link'] = instance.get_link()
         context['picture_size'] = instance.get_size(
-            width=float(context.get('width') or 0),
-            height=float(context.get('height') or 0),
+            width=context.get('width') or 0,
+            height=context.get('height') or 0,
         )
+        context['img_srcset_data'] = instance.img_srcset_data
 
         return super(PicturePlugin, self).render(context, instance, placeholder)
 

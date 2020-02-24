@@ -1,5 +1,7 @@
-# requirements from setup.py
-# other requirements
-djangocms-helper>=0.9.2,<0.10
+django-filer>=1.5.0
+djangocms-attributes-field>=0.4.0
+django-app-helper
 tox
 coverage
+isort
+flake8
